@@ -1,109 +1,79 @@
+<?php
+if (isset($_SESSION['username'])){
+    header("location:input.php");
+}?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Input Nilai</title>
-    <!-- Tambahkan link CSS Bootstrap di bawah ini -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
 </head>
-
 <body>
     <div class="container">
-        <a href="menampilkan.php" class="btn btn-primary">Melihat Data</a>
-        <div class="text-center">
-            <form action="input.php" method="post">
-                <h2>Isi Biodata</h2>
-                <div class="form-group">
-                    <label for="nis">NIS</label>
-                    <input type="number" class="form-control" name="nis" placeholder="NIS">
-                </div>
-                <div class="form-group">
-                    <label for="name">Nama</label>
-                    <input type="text" class="form-control" name="name" placeholder="Nama">
-                </div>
-                <h2>Masukkan Nilai Anda</h2>
-                <div class="form-group">
-                    <label for="indo">Indonesia</label>
-                    <input type="number" class="form-control" name="indo" placeholder="Indonesia">
-                </div>
-                <div class="form-group">
-                    <label for="inggris">Inggris</label>
-                    <input type="number" class="form-control" name="inggris" placeholder="Inggris">
-                </div>
-                <div class="form-group">
-                    <label for="pipas">Pipas</label>
-                    <input type="number" class="form-control" name="pipas" placeholder="Pipas">
-                </div>
-                <div class="form-group">
-                    <label for="mtk">MTK</label>
-                    <input type="number" class="form-control" name="mtk" placeholder="MTK">
-                </div>
-                <div class="form-group">
-                    <label for="produktif">Produktif</label>
-                    <input type="number" class="form-control" name="produktif" placeholder="Produktif">
-                </div>
-                <div class="form-group">
-                    <label for="sejarah">Sejarah</label>
-                    <input type="number" class="form-control" name="sejarah" placeholder="Sejarah">
-                </div>
-                <input type="submit" class="btn btn-primary" name="submit" value="Kirim">
-            </form>
-        </div>
-        <?php
-        // require "conn.php";
-
-        
-
-        // if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        //     $nis = $_POST['nis'];
-        //     $nama = $_POST['name'];
-        //     $indo = $_POST['indo'];
-        //     $inggris = $_POST['inggris'];
-        //     $pipas = $_POST['pipas'];
-        //     $mtk = $_POST['mtk'];
-        //     $produktif = $_POST['produktif'];
-        //     $sejarah = $_POST['sejarah'];
-
-            // echo "Hasil Data!!";
-            
-            // Menghitung total
-            // $total = $indo + $inggris + $pipas + $mtk + $produktif + $sejarah;
-            // // Menghitung Rata-Rata
-            // $rata = $total / 6;
-            // // Menghitung Nilai Min
-            // $min = min($indo, $inggris, $pipas, $mtk, $produktif, $sejarah);
-            // // Menghitung Nilai Max
-            // $max = max($indo, $inggris, $pipas, $mtk, $produktif, $sejarah);
-
-        //     // Menampilkan
-        //     echo "<p>total Total : " . $total . "</p>";
-        //     echo "<p>Rata Rata : " . $rata . "</p>";
-        //     echo "<p>Nilai Max : " . $max . "</p>";
-        //     echo "<p>Nilai Min : " . $min . "</p>";
-
-        //     // Membuat Grade penilaian
-        //     echo "<p>Grade penilaian: ";
-        //     if ($rata >= 90) {
-        //         echo "A";
-        //     } elseif ($rata >= 80) {
-        //         echo "B";
-        //     } elseif ($rata >= 75) {
-        //         echo "C";
-        //     } else {
-        //         echo "D";
-        //     }
-        // }
-        // }
-        ?>
+        <h2>Login</h2>
+        <form action="" method="post">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" name="username" placeholder="Username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" name="password" placeholder="Password" required>
+            </div>
+            <div class="form-group">
+                <button type="submit">Login</button>
+                <a href="regis.php">Register</a>
+            </div>
+        </form>
     </div>
 
-    
-
-    <!-- Tambahkan skrip JavaScript Bootstrap di bawah ini (opsional) -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            padding: 50px;
+            background-color: #f7f7f7;
+        }
+        .container {
+            max-width: 400px;
+            background-color: #ffffff;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 0 auto;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+            margin-left: 10px;
+        }
+    </style>
 </body>
-
 </html>

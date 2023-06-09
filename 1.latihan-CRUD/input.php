@@ -1,67 +1,114 @@
+<?php
+// if (!isset($_SESSION['username'])){
+//     header("location:index.php");
+// }
+?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Input</title>
+    <title>Input Nilai</title>
+    <!-- Tambahkan link CSS Bootstrap di bawah ini -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
+
 <body>
-    <a href ="index.php">Kembali</a>
-<?php
+    <div class="container">
+        <a href="menampilkan.php" class="btn btn-primary">Melihat Data</a>
+        <div class="text-center">
+            <form action="input.php" method="post">
+                <h2>Isi Biodata</h2>
+                <div class="form-group">
+                    <label for="nis">NIS</label>
+                    <input type="number" class="form-control" name="nis" placeholder="NIS" required>
+                </div>
+                <div class="form-group">
+                    <label for="name">Nama</label>
+                    <input type="text" class="form-control" name="name" placeholder="Nama" required>
+                </div>
+                <h2>Masukkan Nilai Anda</h2>
+                <div class="form-group">
+                    <label for="indo">Indonesia</label>
+                    <input type="number" class="form-control" name="indo" placeholder="Indonesia" required>
+                </div>
+                <div class="form-group">
+                    <label for="inggris">Inggris</label>
+                    <input type="number" class="form-control" name="inggris" placeholder="Inggris" required>
+                </div>
+                <div class="form-group">
+                    <label for="pipas">Pipas</label>
+                    <input type="number" class="form-control" name="pipas" placeholder="Pipas" required>
+                </div>
+                <div class="form-group">
+                    <label for="mtk">MTK</label>
+                    <input type="number" class="form-control" name="mtk" placeholder="MTK" required>
+                </div>
+                <div class="form-group">
+                    <label for="produktif">Produktif</label>
+                    <input type="number" class="form-control" name="produktif" placeholder="Produktif" required>
+                </div>
+                <div class="form-group">
+                    <label for="sejarah">Sejarah</label>
+                    <input type="number" class="form-control" name="sejarah" placeholder="Sejarah" required>
+                </div>
+                <input type="submit" class="btn btn-primary" name="submit" value="Kirim">
+            </form>
+        </div>
+        <?php
+        // require "conn.php";
 
-    require 'conn.php'; //memanggil file koneksi
+        
 
-    // Input Data Ke Dalam Database
-    function tambahData($data)
-    {
-        global $conn;
-        $nis = $data["nis"];
-        $nama = $data["name"];
-        $indonesia = $data["indo"];
-        $inggris = $data["inggris"];
-        $pipas = $data["pipas"];
-        $mtk = $data["mtk"];
-        $produktif = $data["produktif"];
-        $sejarah = $data["sejarah"];
+        // if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        //     $nis = $_POST['nis'];
+        //     $nama = $_POST['name'];
+        //     $indo = $_POST['indo'];
+        //     $inggris = $_POST['inggris'];
+        //     $pipas = $_POST['pipas'];
+        //     $mtk = $_POST['mtk'];
+        //     $produktif = $_POST['produktif'];
+        //     $sejarah = $_POST['sejarah'];
 
-        // Menghitung Jumlah
-        $jumlah = $indonesia + $inggris + $pipas + $mtk + $produktif + $sejarah;
+            // echo "Hasil Data!!";
+            
+            // Menghitung total
+            // $total = $indo + $inggris + $pipas + $mtk + $produktif + $sejarah;
+            // // Menghitung Rata-Rata
+            // $rata = $total / 6;
+            // // Menghitung Nilai Min
+            // $min = min($indo, $inggris, $pipas, $mtk, $produktif, $sejarah);
+            // // Menghitung Nilai Max
+            // $max = max($indo, $inggris, $pipas, $mtk, $produktif, $sejarah);
 
-        // Menghitung Rata-rata
-        $rata = $jumlah / 6;
+        //     // Menampilkan
+        //     echo "<p>total Total : " . $total . "</p>";
+        //     echo "<p>Rata Rata : " . $rata . "</p>";
+        //     echo "<p>Nilai Max : " . $max . "</p>";
+        //     echo "<p>Nilai Min : " . $min . "</p>";
 
-        // Menghitung Nilai Maksimum
-        $max = max($indonesia, $inggris, $pipas, $mtk, $produktif, $sejarah);
+        //     // Membuat Grade penilaian
+        //     echo "<p>Grade penilaian: ";
+        //     if ($rata >= 90) {
+        //         echo "A";
+        //     } elseif ($rata >= 80) {
+        //         echo "B";
+        //     } elseif ($rata >= 75) {
+        //         echo "C";
+        //     } else {
+        //         echo "D";
+        //     }
+        // }
+        // }
+        ?>
+    </div>
 
-        // Menghitung Nilai Minimum
-        $min = min($indonesia, $inggris, $pipas, $mtk, $produktif, $sejarah);
+    
 
-        $sql = "INSERT INTO `db_nilai`
-        (`id`, `nis`, `nama`, `indonesia`, `inggris`, `pipas`, `mtk`, `produktif`, `sejarah`, `total`, `rata`, `max`, `min`)
-        VALUES 
-        ('', '$nis', '$nama', '$indonesia', '$inggris', '$pipas', '$mtk', '$produktif', '$sejarah', '$jumlah', '$rata', '$max', '$min')";
-
-        mysqli_query($conn, $sql); //
-
-        return mysqli_affected_rows($conn);
-    }
-
-    // Jika tombol submit di klik, jalankan perintah ini
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        // Jika tambahData($_POST) lebih besar dari 0, maka jalankan
-        if (tambahData($_POST) > 0) {
-            echo "<script> 
-                alert('Data berhasil diinput');
-                window.location.href = 'index.php';
-            </script>";
-        } else {
-            echo "<script>
-                alert('Gagal input');
-                window.location.href = 'index.php';
-            </script>";
-        }
-    }
-?>
+    <!-- Tambahkan skrip JavaScript Bootstrap di bawah ini (opsional) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
+
 </html>
